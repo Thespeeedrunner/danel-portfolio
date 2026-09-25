@@ -1,4 +1,5 @@
 const portfolioKey = 'savedPortfolios';
+const activePortfolioKey = 'activePortfolioId';
 const newPortfolioForm = document.querySelector('#new-portfolio-form');
 const newPortfolioButton = document.querySelector('#new-portfolio-button');
 const savedPortfoliosSelect = document.querySelector('#saved-portfolios');
@@ -13,7 +14,7 @@ const portfolioSidebar = document.querySelector('#portfolio-sidebar');
 const appearanceColor = document.querySelector('#portfolio-color');
 const backgroundImageInput = document.querySelector('#background-image');
 let portfolios = JSON.parse(localStorage.getItem(portfolioKey) || '[]');
-let activePortfolioId = null;
+let activePortfolioId = localStorage.getItem(activePortfolioKey);
 
 const closeSidebar = () => {
   if (portfolioSidebar && sidebarToggle) {
@@ -153,6 +154,7 @@ const saveActivePortfolio = () => {
 
 const loadPortfolio = (portfolio) => {
   activePortfolioId = portfolio.id;
+  localStorage.setItem(activePortfolioKey, activePortfolioId);
   closeSidebar();
   ensureIntroTextCount(portfolio.introTextCount || 2);
   ensureCardCount(portfolio.cardCount || 3, portfolio.cardTypes || []);
@@ -390,9 +392,15 @@ if (newPortfolioButton) {
     document.body.classList.remove('portfolio-created');
     setEditorEnabled(false);
     activePortfolioId = null;
+    localStorage.removeItem(activePortfolioKey);
     renderPortfolioPicker();
     closeSidebar();
   });
 }
 
 renderPortfolioPicker();
+
+if (newPortfolioForm && portfolios.length) {
+  const savedPortfolio = portfolios.find((portfolio) => portfolio.id === activePortfolioId) || portfolios[0];
+  loadPortfolio(savedPortfolio);
+}
