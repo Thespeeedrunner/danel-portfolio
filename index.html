@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="portfolio.js" defer></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <a class="brand" href="index.html">My Portfolio</a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="aboutme.html">About</a>
+          <a href="myprojects.html">Projects</a>
+        </nav>
+      </header>
+
+      <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open portfolio tools" aria-expanded="false" aria-controls="portfolio-sidebar">
+        <span aria-hidden="true">&#8250;</span>
+      </button>
+
+      <aside id="portfolio-sidebar" class="portfolio-sidebar" aria-label="Portfolio tools">
+        <div class="sidebar-heading">
+          <p class="eyebrow">Your work</p>
+          <strong id="portfolio-count">0 portfolios saved</strong>
+        </div>
+        <label for="saved-portfolios">Open a portfolio</label>
+        <select id="saved-portfolios">
+          <option value="">Choose a saved portfolio</option>
+        </select>
+        <label for="box-shape">Box shape</label>
+        <select id="box-shape" disabled>
+          <option value="16px">Rounded</option>
+          <option value="8px">Soft corners</option>
+          <option value="0">Square</option>
+        </select>
+        <label for="box-type">Box type</label>
+        <select id="box-type" disabled>
+          <option value="text">Text box</option>
+          <option value="heading">Heading box</option>
+          <option value="quote">Quote box</option>
+        </select>
+        <label for="editing-color">Editing colour</label>
+        <input id="editing-color" type="color" value="#0f766e" disabled />
+        <button id="add-text-button" type="button" disabled>Add text</button>
+        <button id="add-box-button" type="button" disabled>Add box</button>
+        <button id="new-portfolio-button" type="button">New portfolio</button>
+      </aside>
+
+      <section class="new-portfolio" aria-labelledby="new-portfolio-title">
+        <div>
+          <p class="eyebrow">Start something new</p>
+          <h1 id="new-portfolio-title">Add a new portfolio</h1>
+          <p>Give your portfolio a name, then start adding your work below.</p>
+        </div>
+        <form id="new-portfolio-form">
+          <label for="portfolio-name">Portfolio name</label>
+          <div class="portfolio-form-row">
+            <input id="portfolio-name" name="portfolio-name" type="text" placeholder="e.g. Danel's Design Portfolio" required />
+            <button type="submit">Create portfolio</button>
+          </div>
+          <div class="appearance-controls">
+            <label for="portfolio-color">Portfolio colour</label>
+            <input id="portfolio-color" name="portfolio-color" type="color" value="#0f766e" />
+            <label for="background-image">Background image</label>
+            <input id="background-image" name="background-image" type="file" accept="image/*" />
+          </div>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <main class="main-box">
+        <section class="intro">
+          <h1 class="portfolio-title">Creative Portfolio</h1>
+          <p contenteditable="true" data-placeholder="Click to add an introduction"></p>
+          <p contenteditable="true" data-placeholder="Click to add more information"></p>
+        </section>
+
+        <section class="panel">
+          <div class="empty-box upload-box">
+            <label class="upload-prompt">
+              <span>Upload an image</span>
+              <input type="file" accept="image/*" />
+            </label>
+          </div>
+          <p contenteditable="true" data-placeholder="Click to add a description"></p>
+        </section>
+      </main>
+
+      <section class="cards">
+        <article class="card">
+          <button class="delete-box-button" type="button" aria-label="Delete this box">&times;</button>
+          <h3 contenteditable="true" data-placeholder="Click to name this section"></h3>
+          <p contenteditable="true" data-placeholder="Click to add text"></p>
+        </article>
+        <article class="card">
+          <button class="delete-box-button" type="button" aria-label="Delete this box">&times;</button>
+          <h3 contenteditable="true" data-placeholder="Click to name this section"></h3>
+          <p contenteditable="true" data-placeholder="Click to add text"></p>
+        </article>
+        <article class="card">
+          <button class="delete-box-button" type="button" aria-label="Delete this box">&times;</button>
+          <h3 contenteditable="true" data-placeholder="Click to name this section"></h3>
+          <p contenteditable="true" data-placeholder="Click to add text"></p>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
