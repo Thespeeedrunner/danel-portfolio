@@ -2,6 +2,7 @@
 
 :root {
   --accent-color: #0f766e;
+  --portfolio-text: #ffffff;
   --portfolio-surface: rgba(15, 118, 110, 0.25);
   --portfolio-surface-strong: rgba(15, 118, 110, 0.7);
   --flow-color-1: rgb(85, 188, 180);
@@ -29,7 +30,7 @@
 }
 
 .brand, nav a {
-  color: #111827;
+  color: var(--portfolio-text);
   text-decoration: none;
   font-weight: 600;
 }
@@ -298,6 +299,7 @@ nav {
 
 .main-box, .card, .panel {
   background: var(--portfolio-surface);
+  color: var(--portfolio-text);
   border-radius: var(--box-radius);
   padding: 18px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);

@@ -52,6 +52,15 @@ const colorWithLightness = (hex, amount) => {
   return `rgb(${adjust(red)}, ${adjust(green)}, ${adjust(blue)})`;
 };
 
+const readableTextColor = (hex) => {
+  const value = hex.replace('#', '');
+  const red = parseInt(value.slice(0, 2), 16) / 255;
+  const green = parseInt(value.slice(2, 4), 16) / 255;
+  const blue = parseInt(value.slice(4, 6), 16) / 255;
+  const luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+  return luminance < 0.52 ? '#ffffff' : '#111827';
+};
+
 const getEditorFields = () => [...document.querySelectorAll('[contenteditable]')];
 
 const setEditorEnabled = (enabled) => {
@@ -75,6 +84,7 @@ const setEditorEnabled = (enabled) => {
 const applyAppearance = (settings = {}) => {
   const accentColor = settings.accentColor || '#0f766e';
   document.documentElement.style.setProperty('--accent-color', accentColor);
+  document.documentElement.style.setProperty('--portfolio-text', readableTextColor(accentColor));
   document.documentElement.style.setProperty('--portfolio-surface', colorWithOpacity(accentColor, 0.25));
   document.documentElement.style.setProperty('--portfolio-surface-strong', colorWithOpacity(accentColor, 0.7));
   document.documentElement.style.setProperty('--flow-color-1', colorWithLightness(accentColor, 70));
